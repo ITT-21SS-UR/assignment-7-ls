@@ -27,25 +27,6 @@
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <widget class="QLabel" name="PlayerIcon">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>690</x>
-          <y>440</y>
-          <width>67</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(250, 25, 250);</string>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PlayerIcon&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
        <widget class="QLabel" name="ExplanationLabel">
         <property name="geometry">
          <rect>
@@ -70,6 +51,19 @@ border-color: rgb(0, 0, 0);</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="PlayerIcon">
+        <property name="geometry">
+         <rect>
+          <x>670</x>
+          <y>440</y>
+          <width>81</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </widget>

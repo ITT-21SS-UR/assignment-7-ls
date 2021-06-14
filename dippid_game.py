@@ -21,8 +21,6 @@ class DippidGame(QtWidgets.QWidget):
 
         self.__ui = uic.loadUi("dippid_game.ui", self)
         self._init_ui()
-
-
         self._player_icon = self.__ui.PlayerIcon
         self._add_image_to_label(self._player_icon, "dog-2835088_640.png")
         self._game_frame = self.__ui.GameFrame
