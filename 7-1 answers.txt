@@ -1,3 +1,5 @@
+Answers were written by Johannes Lorper
+
 What is the defining property of Gaussian noise?
 
 Its distribution.
@@ -18,6 +20,3 @@ It filters outliers by averaging values with neighboring values and thus frequen
 if the average calculated for a certain value is lower than the input value itself, its functions as a low-pass filter, if its higher
 than its input value, it functions as a high-pass filter.
 It can change from being a lowpass or highpass filter for different values.
-
-
-

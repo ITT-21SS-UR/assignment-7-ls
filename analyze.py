@@ -5,6 +5,11 @@
 
 """
 Start script with: analyze.py <PORT>
+Script tkaes the DIPPID input and generates a
+PyQtGraph for the x, y, z and rotation of the 
+device. The rotation is shown via a normalvector.
+The input values get logged via a LogNode and printed
+to the stdout.
 """
 
 import sys
