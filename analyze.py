@@ -12,21 +12,47 @@ from PyQt5 import QtGui, QtCore
 import pyqtgraph as pg
 from pyqtgraph.flowchart import Flowchart, Node
 import numpy as np
+from DIPPID_pyqtnode import DIPPIDNode, BufferNode
 
 
-def plot_accels(layout):
-    fc = Flowchart(terminals={})
-    layout.addWidget(fc.widget(), 0, 0, 2, 1)
+def init_plotting(layout, fc):
+    inputs = ("accelX", "accelY", "accelZ")
 
-    inputs = ("acceleration_x", "acceleration_y", "acceleration_z")
+    # create DIPPID node
+    dippid_node = fc.createNode("DIPPID", pos=(0, -100))
 
+    # create plot widgets
+    plot_widgets = []
     for i, input in enumerate(inputs):
         plot_widget = pg.PlotWidget()
         plot_widget.setTitle(input.title())
         plot_widget.setYRange(-1, 1)
         layout.addWidget(plot_widget, 0, i + 1)
-        plot_widget_node = fc.createNode('PlotWidget', pos=(300, i * 100))
+        plot_widgets.append(plot_widget)
+
+    # set plot widget nodes
+    plot_widgets_nodes = []
+    for i, plot_widget in enumerate(plot_widgets):
+        plot_widget_node = fc.createNode('PlotWidget', pos=(150, i * 100))
         plot_widget_node.setPlot(plot_widget)
+        plot_widgets_nodes.append(plot_widget_node)
+
+    # create buffer nodes
+    buffer_nodes = []
+    for i, plot_widget_node in enumerate(plot_widgets_nodes):
+        buffer_node = fc.createNode('Buffer', pos=(300, i * 100))
+        buffer_nodes.append(buffer_node)
+
+    # connect dippid
+    for i, input in enumerate(inputs):
+        # print(input)
+        # print(buffer_nodes[i])
+        fc.connectTerminals(dippid_node[input], buffer_nodes[i]['dataIn'])
+
+    # connect buffer
+    for i, buffer_node in enumerate(buffer_nodes):
+        fc.connectTerminals(
+            buffer_node['dataOut'], plot_widgets_nodes[i]['In'])
 
 
 def get_port():
@@ -47,11 +73,15 @@ if __name__ == '__main__':
     central_widget = QtGui.QWidget()
     win.setCentralWidget(central_widget)
 
-    #  Create a grid layout to manage the widgets size and position
+    # Create a grid layout to manage the widgets size and position
     layout = QtGui.QGridLayout()
     central_widget.setLayout(layout)
 
-    plot_accels(layout)
+    # Creating flowchart
+    fc = Flowchart(terminals={'out': dict(io='out')})
+    layout.addWidget(fc.widget(), 0, 0, 2, 1)
+
+    init_plotting(layout, fc)
 
     win.show()
     if (sys.flags.interactive != 1) or not hasattr(QtCore, 'PYQT_VERSION'):
