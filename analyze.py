@@ -4,7 +4,6 @@
 # Script was written by Michael Schmidt
 
 """
-Start script with: analyze.py <PORT>
 Script tkaes the DIPPID input and generates a
 PyQtGraph for the x, y, z and rotation of the 
 device. The rotation is shown via a normalvector.
@@ -126,18 +125,9 @@ def init_accel_plotting(layout, fc, dippid_node, log_node):
             buffer_node["dataOut"], plot_widgets_nodes[i]["In"])
 
 
-def get_port():
-    if len(sys.argv) != 2:
-        sys.stderr.write("Enter port number as first arugment!\n")
-        sys.exit(1)
-
-    return sys.argv[1]
-
-
 if __name__ == "__main__":
     fclib.registerNodeType(NormalVectorNode, [("Data",)])
     fclib.registerNodeType(LogNode, [("Data",)])
-    port = get_port()
     app = QtGui.QApplication([])
     win = QtGui.QMainWindow()
     win.setWindowTitle("DIPPID Graph")
