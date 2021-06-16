@@ -42,9 +42,9 @@ border-width: 3px;
 border-color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
-         <string>Welcome  to our Dippid-Shower-Game.
+         <string>Welcome  to our Dippid-FruitBasket-Game.
  Please choose the port your device is going to use and click &quot;Connect&quot;. 
- After you click start you will be able to controll the dog at the bottom by tilting your device right and left. Try to catch as many shower drops as you can!</string>
+ After you click start you will be able to control the basket at the bottom by rotation your device left and right. You can change your basket by using Button 1 and 3 on your device. Try  to catch as many fruits as you can with the correct basket.</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
