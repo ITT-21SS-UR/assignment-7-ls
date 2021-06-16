@@ -30,33 +30,34 @@ class NormalVectorNode(Node):
         Node.__init__(self, name, terminals=terminals)
 
     def process(self, **kwds):
-        print(kwds["axis1"][0])
-        print(kwds["axis2"][0])
-        normal_vector = np.array([kwds["axis1"][0], kwds["axis2"][0]])
+        normal_vector = np.array([])
+        normal_vector = np.array(
+            [[0, 0], [kwds["axis1"][0], kwds["axis2"][0]]])
+        print(normal_vector)
         return {"output": normal_vector}
 
 
-fclib.registerNodeType(NormalVectorNode, [("Data",)])
-
-
 def init_normal_vector_plotting(layout, fc, dippid_node):
-    # create plot widgets
+    # create normal vector plot widget
     plot_widget = pg.PlotWidget()
     layout.addWidget(plot_widget, 1, 1)
     plot_widget.setTitle("Normal Vector")
     plot_widget.setYRange(-1, 1)
-    plot_widget.setXRange(0, 1)
+    plot_widget.setXRange(-1, 1)
 
     # set plot widget nodes
     plot_widget_node = fc.createNode("PlotWidget", pos=(450, 100))
+    plot_widget_node.setPlot(plot_widget)
     plot_normal_vector_node = fc.createNode(
         "NormalVectorNode", pos=(450, 200))
-    plot_widget_node.setPlot(plot_normal_vector_node)
 
     # connect dippid
-    fc.connectTerminals(dippid_node["accelX"], plot_normal_vector_node["axis1"])
-    fc.connectTerminals(dippid_node["accelY"], plot_normal_vector_node["axis2"])
-    fc.connectTerminals(plot_normal_vector_node["output"], plot_widget_node["In"])
+    fc.connectTerminals(dippid_node["accelX"],
+                        plot_normal_vector_node["axis1"])
+    fc.connectTerminals(dippid_node["accelY"],
+                        plot_normal_vector_node["axis2"])
+    fc.connectTerminals(
+        plot_normal_vector_node["output"], plot_widget_node["In"])
 
 
 def init_accel_plotting(layout, fc, dippid_node):
@@ -103,6 +104,7 @@ def get_port():
 
 
 if __name__ == '__main__':
+    fclib.registerNodeType(NormalVectorNode, [("Data",)])
     port = get_port()
     app = QtGui.QApplication([])
     win = QtGui.QMainWindow()
