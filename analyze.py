@@ -53,9 +53,9 @@ class LogNode(Node):
         x = kwds["accelX"][0]
         y = kwds["accelY"][0]
         z = kwds["accelZ"][0]
-        # rotation = NormalVectorNode.process().rotation
-        # print(rotation)
-        print(f"Acceleration X: {x}, Acceleration Y: {y}, Acceleration Z: {z}")
+        rotation = kwds["rotation"]
+        print(
+            f"Acceleration X: {x}, Acceleration Y: {y}, Acceleration Z: {z}, Rotation: {rotation[1]}")
 
 
 def init_normal_vector_plotting(layout, fc, dippid_node, log_node):
@@ -79,6 +79,10 @@ def init_normal_vector_plotting(layout, fc, dippid_node, log_node):
                         plot_normal_vector_node["axis2"])
     fc.connectTerminals(
         plot_normal_vector_node["rotation"], plot_widget_node["In"])
+
+    # connect normal vector to log
+    fc.connectTerminals(
+        plot_normal_vector_node["rotation"], log_node["rotation"])
 
 
 def init_accel_plotting(layout, fc, dippid_node, log_node):
