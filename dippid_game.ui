@@ -44,7 +44,7 @@ border-color: rgb(0, 0, 0);</string>
         <property name="text">
          <string>Welcome  to our Dippid-FruitBasket-Game.
  Please choose the port your device is going to use and click &quot;Connect&quot;. 
- After you click start you will be able to control the basket at the bottom by rotation your device left and right. You can change your basket by using Button 1 and 3 on your device. Try  to catch as many fruits as you can with the correct basket.</string>
+ After you click start you will be able to control the basket at the bottom by rotation your device left and right. You can change your basket by using Button 1 and 3 on your device. Try  to catch as many fruits as you can with the correct basket, but beware of catching a fruit with the wrong basket, or you will lose points.</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
