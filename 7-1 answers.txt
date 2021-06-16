@@ -1,0 +1,23 @@
+What is the defining property of Gaussian noise?
+
+Its distribution.
+The defining property of Gaussian noise is its pdf (probability density function) having a Gauss distribution.
+That means that the values calculated with the pdf describe a bell shaped graph.
+(Chapter 2)
+
+What does a low-pass filter do in general?
+
+A low-pass blocks all frequencies above a certain threshold. All frequenzies below the threshold can pass the filter.
+That means, you can filter out all frequenzies above the threshold and only the ones below it remain. (Chapter 3)
+
+Is a moving average filter a low-pass or a high-pass filter? Why?
+
+The moving average filter can be both, depending on the signal (Chapter 15, Figure 15-1[a,b,c], page 279); it has a slow roll-of and
+a poor stopband attentuation as seen in its frequency response graph (Chapter 15, Figure 15-1, page 280)
+It filters outliers by averaging values with neighboring values and thus frequency outliers are effectively filtered out. This means
+if the average calculated for a certain value is lower than the input value itself, its functions as a low-pass filter, if its higher
+than its input value, it functions as a high-pass filter.
+It can change from being a lowpass or highpass filter for different values.
+
+
+
